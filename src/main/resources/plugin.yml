@@ -1,0 +1,16 @@
+main: x.Entt.GreetiX
+name: GreetiX
+version: 1.0.0
+authors: [Enttbot]
+api-version: "1.13"
+
+commands:
+  greetix:
+    description: Main cmd of GreetiX
+    aliases:
+      - gx
+
+permissions:
+  greetix.reload:
+    description: The perm for use /gx reload
+    default: op
