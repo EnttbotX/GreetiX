@@ -4,11 +4,12 @@ import x.Entt.GreetiX.cmds.MainCMD;
 import x.Entt.GreetiX.listeners.Listener;
 import x.Entt.GreetiX.config.MCM;
 import x.Entt.GreetiX.utils.MSGU;
+import x.Entt.GreetiX.utils.UpdateLogger;
+import x.Entt.GreetiX.utils.bStats;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import x.Entt.GreetiX.utils.UpdateLogger;
 
 import java.io.File;
 import java.util.Objects;
@@ -23,20 +24,27 @@ public class GX extends JavaPlugin {
 
     public void onEnable() {
         saveDefaultConfig();
+        bStats stats = new bStats(this, 22097);
 
         Bukkit.getConsoleSender().sendMessage
                 (MSGU.color(prefix + "&av" + version + " &2Enabled!"));
 
         this.mcm = new MCM(this);
 
+        stats.notify();
         registerCommands();
         registerEvents();
         registerFiles();
     }
 
     public void onDisable() {
+        bStats stats = new bStats(this, 22097);
+
         Bukkit.getConsoleSender().sendMessage
                 (MSGU.color(prefix + "&av" + version + " &cDisabled"));
+
+        stats.shutdown();
+        this.saveConfig();
     }
 
     public void registerCommands() {

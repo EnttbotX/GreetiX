@@ -1,6 +1,7 @@
-main: x.Entt.GreetiX
+main: x.Entt.GreetiX.GX
 name: GreetiX
-version: 1.0.0
+version: 1.0.1
+description: Do something when a player joins
 authors: [Enttbot]
 api-version: "1.13"
 
