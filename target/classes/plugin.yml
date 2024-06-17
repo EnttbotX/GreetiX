@@ -1,17 +1,23 @@
 main: x.Entt.GreetiX.GX
 name: GreetiX
-version: 1.0.1
-description: Do something when a player joins
-authors: [Enttbot]
+version: 1.0.2
+description: Perform actions when a player joins.
+authors:
+  - Enttbot
 api-version: "1.13"
 
 commands:
   greetix:
-    description: Main cmd of GreetiX
+    description: Main command of GreetiX
     aliases:
       - gx
 
 permissions:
-  greetix.reload:
-    description: The perm for use /gx reload
+  greetix.*:
     default: op
+    description: All permissions for GreetiX
+    children:
+      greetix.reload: true
+  greetix.reload:
+    description: Permission to use /gx reload
+    default: false
