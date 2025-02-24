@@ -1,10 +1,11 @@
 main: x.Entt.GreetiX.GX
 name: GreetiX
-version: 1.0.2
+version: 1.1.0
 description: Perform actions when a player joins.
 authors:
   - Enttbot
 api-version: "1.13"
+softdepend: [PlaceholderAPI]
 
 commands:
   greetix:
@@ -17,7 +18,11 @@ permissions:
     default: op
     description: All permissions for GreetiX
     children:
-      greetix.reload: true
-  greetix.reload:
+      greetix.commands: true
+      greetix.updatelog: true
+  greetix.commands:
     description: Permission to use /gx reload
-    default: false
+    default: op
+  greetix.updatelog:
+    description: Get a message warning about a new update
+    default: op

@@ -1,36 +1,77 @@
-#         ___                            _        _    __  __
-#       / __|     _ _    ___     ___    | |_     (_)   \ \/ /
-#      | (_ |    | '_|  / -_)   / -_)   |  _|    | |    >  <
-#       \___|   _|_|_   \___|   \___|   _\__|   _|_|_  /_/\_\
-#    _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
-#    "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'
+#    .d8888b.                           888    d8b Y88b   d88P
+#   d88P  Y88b                          888    Y8P  Y88b d88P
+#   888    888                          888          Y88o88P
+#   888        888d888 .d88b.   .d88b.  888888 888    Y888P
+#   888  88888 888P"  d8P  Y8b d8P  Y8b 888    888    d888b
+#   888    888 888    88888888 88888888 888    888   d88888b
+#   Y88b  d88P 888    Y8b.     Y8b.     Y88b.  888  d88P Y88b
+#   "Y8888P88 888     "Y8888   "Y8888   "Y888 888 d88P   Y88b
+#                          By Enttbot | Config v1.1 (edited!)
 
 # cooldown: s(for seconds), mi(for minutes), m(for months), w(for weeks) and y(to years)
-# types: repetitive (it repeats every certain time established by the cooldown [will produce SPAM]),
-# on_join (it occurs when the player joins, it can have a cooldown)
+
+# types:
+#   repetitive (it repeats every certain time established by the cooldown [will produce SPAM]),
+#   on_join (it occurs when the player joins, it can have a cooldown)
+#   on_first_join (executes when a player joins for the first time)
+#   on_leave (executed when a player leaves the server)
+
+# actions:
+#   message (sena a message to the player)
+#   message_for_all (send a message to all players in the server)
+#   message_for_permission_$permission$ (send a message to all players with a specific permission)
+#   command (execute a command by the player)
+#   console_command (execute a command by the console)
+
+#YOU CAN USE PLACEHOLDER API!
+
+update-log: true
+prefix: "&3&l[GreetiX] &f"
 
 messages:
   welcome_message:
     enabled: true
     type: on_join
-    message:
-      - "&cPlugin not configured!"
+    actions:
+      message_for_permission_$greetix$:
+        - "&cPlugin not configured!"
     cooldown: true # [False will produce an instant-message send]
     cooldown_time: 5s
 
   update_log:
     enabled: false
     type: repetitive
-    message:
-      - "&2ApePvP 0.4 has released!"
-      - "&2Check the changelog to view changes!"
+    actions:
+      message:
+        - "&2GreetiX has been Updated!"
     cooldown: true # [False will make SPAM]
     cooldown_time: 15s
 
   spam:
     enabled: false
     type: repetitive
-    message:
+    actions:
+      message_for_all:
       - "&1Made by Enttbot"
     cooldown: true
     cooldown_time: 10s
+
+    # new Events:
+
+  first_join:
+    enabled: true
+    type: on_first_join
+    actions:
+      message:
+        - "&e&lWelcome to the server %player_name%"
+    cooldown: true
+    cooldown_time: 20s
+
+  on_leave:
+    enabled: false
+    type: on_leave
+    actions:
+      message_for_all:
+        - "&c&l%player_name% leaved! &8see you later bro..."
+    cooldown: false
+    cooldown_time: 0s
